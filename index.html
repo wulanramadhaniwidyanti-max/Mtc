@@ -143,8 +143,8 @@ input[type=number]{width:110px}
       <div>
         <h3>Kartu unsur</h3>
         <div class="cards" id="label-bank">
-          <button type="button" class="piece" data-piece="atas" draggable="true">Alas Atas</button>
-          <button type="button" class="piece" data-piece="bawah" draggable="true">Alas Bawah</button>
+          <button type="button" class="piece" data-piece="atas" draggable="true">Tutup</button>
+          <button type="button" class="piece" data-piece="bawah" draggable="true">Alas</button>
           <button type="button" class="piece" data-piece="selimut" draggable="true">Selimut</button>
           <button type="button" class="piece" data-piece="tinggi" draggable="true">Tinggi</button>
         </div>
@@ -286,8 +286,8 @@ input[type=number]{width:110px}
   const $$ = s => [...document.querySelectorAll(s)];
   const correctLabels = {A:"atas", B:"tinggi", C:"bawah", D:"selimut"};
   const hints1 = {
-    atas:"Alas atas adalah bidang datar di bagian paling atas kaleng.",
-    bawah:"Alas bawah adalah bidang datar tempat kaleng berdiri.",
+    atas:"Tutup adalah bidang datar di bagian paling atas kaleng.",
+    bawah:"Alas adalah bidang datar tempat kaleng berdiri.",
     tinggi:"Tinggi diukur lurus dari alas bawah ke alas atas.",
     selimut:"Selimut adalah bagian lengkung yang mengelilingi badan kaleng."
   };
@@ -482,13 +482,13 @@ input[type=number]{width:110px}
   const helps = [
     [ "Lihat posisi penanda: mana yang bidang datar, mana yang bagian lengkung, mana garis tegak?",
       "Dua alas tabung bentuknya sama; bagian lengkungnya punya nama sendiri.",
-      "Tinggi diukur dari alas bawah ke alas atas, bukan mengelilingi kaleng." ],
+      "Tinggi diukur dari alas ke tutup, bukan mengelilingi kaleng." ],
     [ "Bayangkan membuka kaleng bekas: bagian mana yang tetap datar, bagian mana yang dibentangkan?",
       "Dua potongan harus sama besar karena menjadi alas dan tutup.",
       "Bagian yang dibentangkan ada di tengah; kedua alas menempel pada sisi yang berhadapan." ],
     [ "Bayangkan selimut dibentangkan. Ukuran apa pada kaleng yang menjadi sisi-sisi persegi panjang?",
       "Sisi yang tadinya melingkari kaleng sama dengan apa pada lingkaran alas?",
-      "Sisi yang tegak lurus sama dengan ukuran apa yang diukur dari alas bawah ke alas atas?" ]
+      "Sisi yang tegak lurus sama dengan ukuran apa yang diukur dari alas ke tutup?" ]
   ];
   $("#help").addEventListener("click",()=>{
     const i=st.view, n=Math.min(st.helpCount[i],2);
