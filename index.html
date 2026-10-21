@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bongkar Kaleng Bu Ratna: Misi Kertas Kado</title>
+<style>
+:root{--ink:#123b43;--teal:#087b83;--cream:#fff8e7;--gold:#f9ca55;--line:#bdd7d3;--ok:#238143}
+*{box-sizing:border-box}
+body{margin:0;font-family:"DM Sans","Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 90% 0%,#d6eee7 0%,transparent 34%),var(--cream);min-height:100vh}
+.wrap{max-width:1000px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:clamp(24px,5vw,34px);margin:4px 0 0;font-weight:800;line-height:1.2}
+h2{font-size:24px;margin:0 0 8px;font-weight:800}
+h3{font-size:19px;margin:0 0 10px;font-weight:700}
+p{line-height:1.6;margin:0 0 12px;font-size:17px}
+.eyebrow{color:var(--teal);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin:0}
+.top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.team{background:#fff;border:2px solid var(--teal);border-radius:999px;padding:8px 18px;font-weight:800}
+.panel{background:#fff;border:1px solid #dce9e5;border-radius:24px;box-shadow:0 14px 34px #164f4b13;padding:22px;margin-bottom:16px}
+.hidden{display:none!important}
+button,select,input{font-family:inherit;font-size:17px;touch-action:manipulation}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #e39817;outline-offset:3px}
+.action{background:var(--gold);color:#243b36;font-weight:800;border:0;border-radius:15px;min-height:48px;padding:10px 22px;box-shadow:0 4px 0 #d9a834;cursor:pointer}
+.action:disabled{opacity:.5;cursor:not-allowed}
+.secondary{background:#e7f5f1;color:#11535a;border:2px solid #95c8c2;border-radius:15px;min-height:46px;padding:8px 18px;font-weight:700;cursor:pointer}
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.stage{border:2px solid var(--line);background:#fff;color:#47666b;border-radius:999px;padding:10px;font-weight:700;cursor:pointer}
+.stage.active{border-color:var(--teal);background:#e0f4ee;color:var(--ink)}
+.stage.done{border-color:var(--teal);background:var(--teal);color:#fff}
+.stage:disabled{opacity:.6;cursor:not-allowed}
+.notice{border-radius:14px;padding:12px 16px;background:#e8f4f2;border-left:5px solid var(--teal);margin-bottom:16px;line-height:1.5}
+.notice.good{border-left-color:var(--ok);background:#e3f6e8}
+.lkpd{background:#fff4d2;border:2px dashed #e0a82e;border-radius:14px;padding:12px 16px;margin-top:16px;font-weight:600;line-height:1.5}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.stagebox{background:#e9f5ee;border-radius:18px;padding:18px;min-height:240px}
+/* kaleng */
+.can{position:relative;width:180px;height:205px;margin:auto}
+.can-body{position:absolute;left:27px;top:37px;width:126px;height:130px;background:linear-gradient(90deg,#63bdba,#a9e5d2 48%,#449b9a);border:3px solid #176a72;border-radius:0 0 48% 48% / 0 0 15% 15%}
+.can-top,.can-bottom{position:absolute;left:27px;width:126px;height:36px;border:3px solid #176a72;border-radius:50%;background:#c7efe0}
+.can-top{top:19px}.can-bottom{top:148px;background:#8accc4}
+.dimension{position:absolute;left:10px;top:55px;height:99px;border-left:3px dashed #e29b26}
+.marker{position:absolute;z-index:2;border-radius:12px;background:#fff;border:2px solid var(--teal);min-width:36px;min-height:36px;padding:4px;font-weight:800;cursor:pointer;box-shadow:0 3px 8px #0c474229}
+.marker.done{background:#d4f2d8;border-color:var(--ok)}
+.marker.over{background:#fff0c7}
+.unfold .can-body{animation:openCan 1s ease-in-out forwards}
+.unfold .can-top{animation:liftTop 1s forwards}
+.unfold .can-bottom{animation:lowerBase 1s forwards}
+.refold .can-body{animation:closeCan 1s ease-in-out forwards}
+.refold .can-top{animation:dropTop 1s forwards}
+.refold .can-bottom{animation:raiseBase 1s forwards}
+@keyframes openCan{to{border-radius:9px;transform:scaleX(1.4);background:#8cd4c9}}
+@keyframes liftTop{to{transform:translate(-75px,-15px)}}
+@keyframes lowerBase{to{transform:translate(100px,20px)}}
+@keyframes closeCan{from{border-radius:9px;transform:scaleX(1.4);background:#8cd4c9}}
+@keyframes dropTop{from{transform:translate(-75px,-15px)}}
+@keyframes raiseBase{from{transform:translate(100px,20px)}}
+.pop{animation:pop .55s ease-out}
+@keyframes pop{0%{transform:scale(.6)}55%{transform:scale(1.12)}100%{transform:scale(1)}}
+/* kartu */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.piece{border:2px solid #92bcb8;background:#f3fbf8;border-radius:16px;padding:10px;min-height:60px;font-weight:700;cursor:grab;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--ink)}
+.piece:hover,.piece.selected{border-color:#b56b00;background:#fff0c7;box-shadow:0 0 0 3px #f9ca5566}
+.piece.used{opacity:.45;cursor:default}
+.drop{border:2px dashed #69aaa7;background:#f5fcf9;border-radius:16px;min-height:96px;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;font-weight:700;color:var(--ink);cursor:pointer}
+.drop.over{background:#e4f7ed;border-color:var(--teal)}
+.drop.filled{border-style:solid;background:#e2f5eb}
+.assembly{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:8px}
+/* pilihan */
+.choice{border:2px solid var(--line);background:#fff;border-radius:14px;padding:12px 16px;font-weight:700;cursor:pointer;min-height:52px;text-align:left;color:var(--ink)}
+.choice:hover:not(:disabled){border-color:var(--teal);background:#f0fbf6}
+.choice.right{background:#def4e5;border-color:var(--ok)}
+.choice:disabled{opacity:.7;cursor:default}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+select,input[type=text],input[type=number]{border:2px solid var(--teal);border-radius:10px;padding:8px 10px;background:#fff;color:var(--ink)}
+input[type=number]{width:110px}
+.q{border-top:1px solid #e1ece9;padding-top:14px;margin-top:14px}
+.q label{font-weight:700;display:block;margin-bottom:8px;line-height:1.5}
+.ok-field{background:#def4e5!important;border-color:var(--ok)!important}
+.rowline{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.stars{font-size:2.4rem;color:#c4840b}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- LAYAR AWAL -->
+<section id="start" class="panel" style="text-align:center;max-width:560px;margin:40px auto">
+  <p class="eyebrow">Petualangan Matematika · Kelas 9</p>
+  <h1>Bongkar Kaleng Bu Ratna: Misi Kertas Kado</h1>
+  <p style="margin-top:16px">Satu perangkat untuk satu kelompok. Diskusikan setiap jawaban bersama, lalu catat hasilnya di LKPD.</p>
+  <form id="start-form">
+    <p><label for="team-name" style="font-weight:700">Nama kelompok</label></p>
+    <p><input type="text" id="team-name" maxlength="30" placeholder="Contoh: Kelompok Pythagoras" style="width:100%;max-width:340px" autocomplete="off"></p>
+    <button class="action" type="submit">Mulai Misi</button>
+  </form>
+</section>
+
+<!-- GAME -->
+<div id="game" class="hidden">
+  <header class="top">
+    <div>
+      <p class="eyebrow">Petualangan Matematika · Kelas 9</p>
+      <h1>Bongkar Kaleng Bu Ratna</h1>
+    </div>
+    <div class="rowline">
+      <div class="team" id="team-badge"></div>
+      <button class="secondary" id="help" type="button">Bantuan</button>
+    </div>
+  </header>
+
+  <nav class="stages" aria-label="Kemajuan misi">
+    <button class="stage" data-stage="0" type="button">Level 1</button>
+    <button class="stage" data-stage="1" type="button">Level 2</button>
+    <button class="stage" data-stage="2" type="button">Level 3</button>
+  </nav>
+
+  <div class="panel" style="display:flex;gap:16px;align-items:center">
+    <div style="font-size:44px" aria-hidden="true">👩🏽‍🏫</div>
+    <div>
+      <h2 style="font-size:22px">Bantu Ibu Ratna!</h2>
+      <p style="margin:0">Ibu ingin membungkus seluruh permukaan kaleng susu bekas (alas, tutup, dan badan lengkungnya) dengan kertas kado untuk celengan adik, tanpa kurang atau berlebih. Bagaimana bentuk potongan kertas kadonya?</p>
+    </div>
+  </div>
+
+  <div id="message" class="notice" role="status" aria-live="polite"></div>
+
+  <!-- LEVEL 1 -->
+  <section id="level1" class="panel">
+    <h2>Level 1 · Tebak Unsur</h2>
+    <p>Pasangkan kartu nama dengan penanda A, B, C, dan D pada kaleng. Pilih kartu lalu pilih hurufnya, atau seret kartu ke huruf.</p>
+    <div class="grid2">
+      <div class="stagebox">
+        <div class="can" role="img" aria-label="Gambar tabung dengan penanda A, B, C, dan D">
+          <div class="can-body"></div><div class="can-bottom"></div><div class="can-top"></div><div class="dimension"></div>
+          <button type="button" class="marker" data-target="A" style="left:72px;top:4px" aria-label="Penanda A">A</button>
+          <button type="button" class="marker" data-target="B" style="left:-9px;top:91px" aria-label="Penanda B">B</button>
+          <button type="button" class="marker" data-target="C" style="left:76px;top:166px" aria-label="Penanda C">C</button>
+          <button type="button" class="marker" data-target="D" style="left:78px;top:91px" aria-label="Penanda D">D</button>
+        </div>
+      </div>
+      <div>
+        <h3>Kartu unsur</h3>
+        <div class="cards" id="label-bank">
+          <button type="button" class="piece" data-piece="atas" draggable="true">Alas Atas</button>
+          <button type="button" class="piece" data-piece="bawah" draggable="true">Alas Bawah</button>
+          <button type="button" class="piece" data-piece="selimut" draggable="true">Selimut</button>
+          <button type="button" class="piece" data-piece="tinggi" draggable="true">Tinggi</button>
+        </div>
+      </div>
+    </div>
+    <div id="l1-blanks" class="hidden q">
+      <h3>Lengkapi kalimat tentang tabung</h3>
+      <form id="blank-form">
+        <p style="line-height:2.2">Tabung dibatasi oleh dua bidang berbentuk
+          <select id="blank-one" aria-label="bentuk alas"><option value="">Pilih bentuk</option><option value="persegi">persegi</option><option value="lingkaran">lingkaran</option><option value="segitiga">segitiga</option></select>
+          yang sejajar dan kongruen, serta satu bidang lengkung yang disebut
+          <select id="blank-two" aria-label="nama bidang lengkung"><option value="">Pilih nama</option><option value="tinggi">tinggi</option><option value="selimut">selimut</option><option value="diameter">diameter</option></select>.</p>
+        <button class="action" type="submit">Periksa Kalimat</button>
+      </form>
+    </div>
+    <div class="lkpd">📝 Catat hasilnya pada tabel LKPD Bagian C (1), lalu lengkapi kalimat rumpangnya di LKPD.</div>
+  </section>
+
+  <!-- LEVEL 2 -->
+  <section id="level2" class="panel hidden">
+    <h2>Level 2 · Bongkar Kaleng</h2>
+
+    <div id="l2-predict">
+      <p>Bayangkan tutup dan alas kaleng dilepas, lalu badan kaleng diiris tegak dari atas ke bawah dan dibentangkan.</p>
+      <h3>Tebakanmu: bagian badan (selimut) yang dibentangkan berbentuk apa?</h3>
+      <div class="choices" id="predict-choices">
+        <button class="choice" type="button" data-guess="segitiga">Segitiga</button>
+        <button class="choice" type="button" data-guess="persegipanjang">Persegi panjang</button>
+        <button class="choice" type="button" data-guess="lingkaran">Lingkaran</button>
+        <button class="choice" type="button" data-guess="trapesium">Trapesium</button>
+      </div>
+      <div class="lkpd">📝 Diskusikan dengan kelompokmu sebelum memilih. Tebakan boleh salah, kita buktikan nanti.</div>
+    </div>
+
+    <div id="l2-build" class="hidden">
+      <div class="stagebox" style="min-height:0;margin-bottom:16px" id="unfold-demo">
+        <div class="can" aria-hidden="true"><div class="can-body"></div><div class="can-bottom"></div><div class="can-top"></div></div>
+        <p style="text-align:center;font-weight:700;margin:6px 0 0" id="unfold-caption">Kaleng dibongkar: tutup dan alas dilepas, badan diiris dan dibentangkan.</p>
+      </div>
+      <div class="grid2" style="align-items:start">
+        <div>
+          <h3>Tumpukan potongan</h3>
+          <p style="font-size:15px">Amati ukuran tiap potongan dengan teliti. Ada potongan yang tidak diperlukan.</p>
+          <div class="cards" id="shape-bank"></div>
+        </div>
+        <div>
+          <h3>Area susun</h3>
+          <p style="font-size:15px">Pilih atau seret potongan ke kiri, tengah, dan kanan. Ketuk potongan yang terpasang untuk melepasnya.</p>
+          <div class="assembly" id="assembly">
+            <button type="button" class="drop" data-slot="left">Kiri</button>
+            <button type="button" class="drop" data-slot="center" style="min-height:120px">Tengah</button>
+            <button type="button" class="drop" data-slot="right">Kanan</button>
+          </div>
+          <div class="rowline" style="margin-top:14px">
+            <button class="action" id="check-net" type="button">Periksa</button>
+            <button class="secondary" id="reset-net" type="button">Coba Lagi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="l2-done" class="hidden">
+      <div class="stagebox" style="min-height:0;margin-bottom:16px" id="fold-demo">
+        <div class="can" aria-hidden="true"><div class="can-body"></div><div class="can-bottom"></div><div class="can-top"></div></div>
+        <p style="text-align:center;font-weight:700;margin:6px 0 0">Susunanmu dapat dilipat kembali menjadi tabung!</p>
+      </div>
+      <div class="notice good" id="predict-result"></div>
+      <div class="lkpd">📝 Gambar sketsa jaring-jaring tabung pada LKPD Bagian C (2), lalu jawab pertanyaan tentang bangun datar penyusunnya.</div>
+      <p style="margin-top:14px"><button class="action" id="to-l3" type="button">Lanjut ke Level 3</button></p>
+    </div>
+  </section>
+
+  <!-- LEVEL 3 -->
+  <section id="level3" class="panel hidden">
+    <h2>Level 3 · Potong Kertas Kado</h2>
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="stagebox" style="min-height:0;text-align:center">
+        <div class="can" aria-hidden="true"><div class="can-body"></div><div class="can-bottom"></div><div class="can-top"></div></div>
+        <p style="font-weight:800;margin:0">Kaleng susu Bu Ratna</p>
+      </div>
+      <div>
+        <p>Ibu Ratna sudah mengenal bagian-bagian kalengnya. Sekarang bantu Ibu menentukan potongan kertas kado yang pas untuk menutup seluruh permukaan kaleng, tanpa kurang atau berlebih.</p>
+        <p>Diskusikan dengan kelompokmu, lalu jawab pertanyaan berikut.</p>
+      </div>
+    </div>
+
+    <form id="final-form" novalidate>
+      <div class="q">
+        <label for="f-count">1. Berapa banyak potongan berbentuk lingkaran yang diperlukan?</label>
+        <input type="number" id="f-count" inputmode="numeric" min="0"> buah
+      </div>
+      <div class="q">
+        <label for="f-rel-l">2. Jika selimut dibentangkan menjadi persegi panjang, panjangnya sama dengan ... alas kaleng.</label>
+        <select id="f-rel-l"><option value="">Pilih</option><option value="diameter">diameter</option><option value="keliling">keliling</option><option value="jari">jari-jari</option><option value="luas">luas</option></select>
+      </div>
+      <div class="q">
+        <label for="f-rel-w">3. Lebar persegi panjang itu sama dengan ... kaleng.</label>
+        <select id="f-rel-w"><option value="">Pilih</option><option value="jari">jari-jari</option><option value="diameter">diameter</option><option value="tinggi">tinggi</option></select>
+      </div>
+      <div class="q">
+        <label for="f-why">4. Mengapa kertas kado tidak cukup dipotong menjadi lingkaran saja?</label>
+        <select id="f-why" style="max-width:100%">
+          <option value="">Pilih alasan</option>
+          <option value="satu">Satu lingkaran besar bisa dilipat menutupi seluruh kaleng</option>
+          <option value="benar">Lingkaran hanya cocok menutup alas dan tutup, sedangkan badan kaleng perlu potongan persegi panjang</option>
+          <option value="tanpa">Badan kaleng tidak perlu ditutup kertas kado</option>
+        </select>
+      </div>
+      <p style="margin-top:16px"><button class="action" type="submit">Periksa Jawaban</button></p>
+    </form>
+    <div class="lkpd">📝 Tuliskan jawaban dan alasanmu pada LKPD Bagian C (2) no. 2 (hubungan ukuran lingkaran alas dengan persegi panjang selimut), lalu rumuskan kesimpulan kelompokmu pada LKPD Bagian D.</div>
+  </section>
+
+  <!-- HASIL -->
+  <section id="results" class="panel hidden" style="text-align:center">
+    <div style="font-size:56px" aria-hidden="true">🎉</div>
+    <h2 id="result-title">Misi selesai!</h2>
+    <p>Kelompokmu sudah menyelesaikan ketiga level dengan bekerja sama.</p>
+    <div style="text-align:left;max-width:560px;margin:0 auto 16px">
+      <div class="lkpd" style="margin-top:0">
+        <strong>Langkah berikutnya:</strong>
+        <ol style="margin:8px 0 0;padding-left:22px;line-height:1.7">
+          <li>Pastikan sketsa jaring-jaring dan alasan di LKPD Bagian C sudah lengkap.</li>
+          <li>Tentukan perwakilan kelompok untuk menggambar jaring-jaring di papan tulis dan menyebutkan unsur-unsurnya.</li>
+          <li>Siapkan jawaban: bagaimana kelompokmu menyimpulkan cara Ibu Ratna memotong kertas kado?</li>
+        </ol>
+      </div>
+    </div>
+    <button class="secondary" id="restart" type="button">Main Lagi</button>
+  </section>
+
+  <p id="back-wrap" class="hidden"><button class="secondary" id="back" type="button">← Kembali</button></p>
+</div>
+</div>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const correctLabels = {A:"atas", B:"tinggi", C:"bawah", D:"selimut"};
+  const hints1 = {
+    atas:"Alas atas adalah bidang datar di bagian paling atas kaleng.",
+    bawah:"Alas bawah adalah bidang datar tempat kaleng berdiri.",
+    tinggi:"Tinggi diukur lurus dari alas bawah ke alas atas.",
+    selimut:"Selimut adalah bagian lengkung yang mengelilingi badan kaleng."
+  };
+  const SHAPES = {
+    rect:{name:"Persegi panjang", svg:'<svg width="78" height="44" viewBox="0 0 78 44" aria-hidden="true"><rect x="2" y="2" width="74" height="40" fill="#8fd0c4" stroke="#176a72" stroke-width="3"/></svg>'},
+    circleR:{name:"Lingkaran R", svg:'<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="12" fill="#c7efe0" stroke="#176a72" stroke-width="3"/></svg>'},
+    circleP:{name:"Lingkaran P", svg:'<svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="24" fill="#c7efe0" stroke="#176a72" stroke-width="3"/></svg>'},
+    tri:{name:"Segitiga", svg:'<svg width="54" height="48" viewBox="0 0 54 48" aria-hidden="true"><polygon points="27,3 51,45 3,45" fill="#f9e3a3" stroke="#176a72" stroke-width="3"/></svg>'},
+    sq:{name:"Persegi", svg:'<svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><rect x="2" y="2" width="42" height="42" fill="#f9e3a3" stroke="#176a72" stroke-width="3"/></svg>'},
+    circleQ:{name:"Lingkaran Q", svg:'<svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="24" fill="#c7efe0" stroke="#176a72" stroke-width="3"/></svg>'}
+  };
+  const ORDER = ["tri","circleP","rect","circleR","sq","circleQ"];
+  let st, selected=null, selectedType=null, audio;
+
+  const notice = (t, good=false) => {
+    const el=$("#message"); el.textContent=(good?"✓ ":"ⓘ ")+t; el.classList.toggle("good",good);
+    if(good){el.classList.remove("pop");void el.offsetWidth;el.classList.add("pop")}
+  };
+  function chime(){
+    try{
+      audio ||= new (window.AudioContext||window.webkitAudioContext)();
+      if(audio.state==="suspended")audio.resume();
+      const o=audio.createOscillator(),g=audio.createGain(),t=audio.currentTime;
+      o.type="sine";o.frequency.setValueAtTime(660,t);o.frequency.exponentialRampToValueAtTime(880,t+.13);
+      g.gain.setValueAtTime(.045,t);g.gain.exponentialRampToValueAtTime(.001,t+.22);
+      o.connect(g).connect(audio.destination);o.start();o.stop(t+.23);
+    }catch(e){}
+  }
+  const good = t => {chime();notice(t,true)};
+
+  function clearSel(){ $$(".piece.selected").forEach(p=>p.classList.remove("selected")); selected=null; selectedType=null; }
+  function setSel(el,type){
+    if(el.classList.contains("used"))return;
+    const same = selected===el; clearSel(); if(same)return;
+    selected=el; selectedType=type; el.classList.add("selected");
+    notice("Terpilih: "+el.textContent.trim()+". Sekarang pilih tempatnya.");
+  }
+
+  /* ---------- navigasi ---------- */
+  function renderStages(){
+    $$(".stage").forEach((el,i)=>{
+      const status = i<st.unlocked ? "Selesai" : i===st.view ? "Aktif" : "Terkunci";
+      el.className="stage "+(i<st.unlocked && i!==st.view ? "done" : i===st.view ? "active" : "");
+      el.disabled = i>st.unlocked || st.finished;
+      el.textContent=`Level ${i+1} · ${status}`;
+    });
+    $("#back-wrap").classList.toggle("hidden", st.view===0 || st.finished);
+    $("#help").classList.toggle("hidden", st.finished);
+  }
+  function showLevel(i){
+    st.view=i;
+    ["#level1","#level2","#level3"].forEach((s,n)=>$(s).classList.toggle("hidden",n!==i));
+    $("#results").classList.add("hidden");
+    clearSel(); renderStages();
+    notice(["Pasangkan setiap nama unsur dengan huruf pada tabung.",
+            "Buat tebakan dulu, lalu susun potongan agar kaleng dapat dilipat kembali.",
+            "Tentukan bentuk potongan kertas kado dengan bernalar, bukan menebak."][i]);
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  function unlock(n){ st.unlocked=Math.max(st.unlocked,n); }
+
+  /* ---------- LEVEL 1 ---------- */
+  function placeLabel(target){
+    if(!selected||selectedType!=="label"||target.classList.contains("done"))return;
+    const key=selected.dataset.piece, letter=target.dataset.target;
+    if(correctLabels[letter]!==key){ notice(hints1[key]); clearSel(); return; }
+    target.classList.add("done","pop"); target.textContent=letter+" ✓";
+    target.setAttribute("aria-label",`${letter}: ${selected.textContent.trim()}, benar`);
+    selected.classList.add("used"); selected.disabled=true; clearSel(); st.matched++;
+    if(st.matched===4){ $("#l1-blanks").classList.remove("hidden"); good("Semua unsur sudah dipasangkan. Lengkapi kalimat untuk menuntaskan Level 1."); }
+    else good("Benar! Unsur tabung ditemukan.");
+  }
+  $$("#label-bank .piece").forEach(el=>{
+    el.addEventListener("click",()=>setSel(el,"label"));
+    el.addEventListener("dragstart",e=>{ if(el.disabled){e.preventDefault();return} e.dataTransfer.setData("text/plain",el.dataset.piece); selected=el; selectedType="label"; });
+  });
+  $$(".marker").forEach(m=>{
+    m.addEventListener("click",()=>placeLabel(m));
+    m.addEventListener("dragover",e=>{e.preventDefault();m.classList.add("over")});
+    m.addEventListener("dragleave",()=>m.classList.remove("over"));
+    m.addEventListener("drop",e=>{e.preventDefault();m.classList.remove("over");placeLabel(m)});
+  });
+  $("#blank-form").addEventListener("submit",e=>{
+    e.preventDefault();
+    const items=[["blank-one","lingkaran","Perhatikan bentuk dua bidang datar pada ujung kaleng."],["blank-two","selimut","Nama bagian lengkung yang mengelilingi kaleng adalah ..."]];
+    let empty=false;
+    items.forEach(([id,ans,hint])=>{
+      if(st.blankDone[id])return;
+      const el=$("#"+id);
+      if(!el.value){empty=true;return}
+      if(el.value===ans){st.blankDone[id]=true;el.disabled=true;el.classList.add("ok-field")}
+      else notice(hint);
+    });
+    if(empty){notice("Isi kedua pilihan dahulu.");return}
+    if(Object.keys(st.blankDone).length===2){ good("Kalimat lengkap! Level 1 selesai."); unlock(1); setTimeout(()=>showLevel(1),900); }
+  });
+
+  /* ---------- LEVEL 2 ---------- */
+  ORDER.forEach(id=>{
+    const b=document.createElement("button");
+    b.type="button"; b.className="piece"; b.dataset.piece=id; b.draggable=true;
+    b.innerHTML=SHAPES[id].svg+"<span>"+SHAPES[id].name+"</span>";
+    $("#shape-bank").appendChild(b);
+    b.addEventListener("click",()=>setSel(b,"shape"));
+    b.addEventListener("dragstart",e=>{ if(b.disabled){e.preventDefault();return} e.dataTransfer.setData("text/plain",id); selected=b; selectedType="shape"; });
+  });
+  $$("#predict-choices .choice").forEach(b=>b.addEventListener("click",()=>{
+    st.guess=b.dataset.guess;
+    $$("#predict-choices .choice").forEach(x=>x.disabled=true);
+    b.style.borderColor="#087b83";
+    $("#l2-predict").classList.add("hidden"); $("#l2-build").classList.remove("hidden");
+    $("#unfold-demo").classList.remove("unfold"); void $("#unfold-demo").offsetWidth; $("#unfold-demo").classList.add("unfold");
+    notice("Tebakan tersimpan. Amati kaleng yang dibongkar, lalu susun potongan jaring-jaringnya.");
+  }));
+  function slotReset(slot){
+    const old=st.slots[slot.dataset.slot];
+    if(old){ const p=$(`#shape-bank [data-piece="${old}"]`); p.classList.remove("used"); p.disabled=false; }
+    st.slots[slot.dataset.slot]=null; slot.innerHTML=slot.dataset.original; slot.classList.remove("filled");
+  }
+  function placeShape(slot){
+    if(!selected||selectedType!=="shape")return;
+    const piece=selected, id=piece.dataset.piece;
+    Object.keys(st.slots).forEach(k=>{ if(st.slots[k]===id) slotReset($(`[data-slot="${k}"]`)); });
+    slotReset(slot);
+    st.slots[slot.dataset.slot]=id;
+    slot.innerHTML=SHAPES[id].svg+"<span>"+SHAPES[id].name+"</span>";
+    slot.classList.add("filled"); piece.classList.add("used"); piece.disabled=true; clearSel();
+    notice("Potongan ditempatkan. Tekan Periksa setelah ketiga tempat terisi.");
+  }
+  $$(".drop").forEach(s=>{
+    s.dataset.original=s.textContent;
+    s.addEventListener("click",()=>{ if(selected)placeShape(s); else if(st.slots[s.dataset.slot]){slotReset(s);notice("Potongan dikembalikan ke tumpukan.")} });
+    s.addEventListener("dragover",e=>{e.preventDefault();s.classList.add("over")});
+    s.addEventListener("dragleave",()=>s.classList.remove("over"));
+    s.addEventListener("drop",e=>{e.preventDefault();s.classList.remove("over");placeShape(s)});
+  });
+  $("#check-net").addEventListener("click",()=>{
+    const {left,center,right}=st.slots;
+    if(!left||!center||!right){notice("Isi ketiga tempat susun dahulu. Ada potongan yang tidak diperlukan.");return}
+    const ok = center==="rect" && [left,right].sort().join()==="circleP,circleQ";
+    if(!ok){
+      st.netErrors++;
+      notice(st.netErrors===1 ? "Pikirkan: bidang apa saja yang membatasi tabung? Hitung ada berapa bidang datar dan berapa bidang lengkung."
+           : st.netErrors===2 ? "Perhatikan ukuran potongan. Kedua alas kaleng harus berukuran sama."
+           : "Bidang lengkung yang dibentangkan berada di tengah. Kedua alas menempel pada sisi yang berhadapan.");
+      return;
+    }
+    $("#l2-build").classList.add("hidden"); $("#l2-done").classList.remove("hidden");
+    $("#fold-demo").classList.remove("refold"); void $("#fold-demo").offsetWidth; $("#fold-demo").classList.add("refold");
+    $("#predict-result").textContent = st.guess==="persegipanjang"
+      ? "Tebakanmu di awal tepat: selimut yang dibentangkan berbentuk persegi panjang."
+      : "Bandingkan dengan tebakanmu di awal. Ternyata selimut yang dibentangkan berbentuk persegi panjang.";
+    good("Benar! Jaring-jaring terlipat kembali menjadi tabung.");
+    unlock(2);
+  });
+  $("#reset-net").addEventListener("click",()=>{
+    Object.keys(st.slots).forEach(k=>slotReset($(`[data-slot="${k}"]`)));
+    $$("#shape-bank .piece").forEach(p=>{p.disabled=false;p.classList.remove("used","selected")});
+    clearSel(); notice("Area susun dikosongkan. Coba susun lagi.");
+  });
+  $("#to-l3").addEventListener("click",()=>showLevel(2));
+
+  /* ---------- LEVEL 3 ---------- */
+  $("#final-form").addEventListener("submit",e=>{
+    e.preventDefault();
+    const val = id => $("#"+id).value;
+    const num = id => parseFloat(val(id));
+    const checks = [
+      {id:"f-count", empty:val("f-count")==="", ok:num("f-count")===2, fb: n=> n===1?"Kaleng punya alas dan tutup. Ada berapa bidang lingkaran?" : "Hitung bidang datar berbentuk lingkaran pada kaleng."},
+      {id:"f-rel-l", empty:val("f-rel-l")==="", ok:val("f-rel-l")==="keliling", fb:()=>"Bayangkan selimut dibentangkan. Sisi yang tadinya melingkari kaleng sama dengan apa pada lingkaran alas?"},
+      {id:"f-rel-w", empty:val("f-rel-w")==="", ok:val("f-rel-w")==="tinggi", fb:()=>"Sisi yang tegak lurus dengan sisi melingkar, mengikuti ukuran apa pada kaleng?"},
+      {id:"f-why", empty:val("f-why")==="", ok:val("f-why")==="benar", fb:()=>"Ingat kembali bentuk selimut yang dibentangkan di Level 2. Apakah bentuk itu bisa ditutup oleh lingkaran?"}
+    ];
+    if(checks.some(c=>c.empty)){notice("Lengkapi semua isian terlebih dahulu.");return}
+    let firstWrong=null;
+    checks.forEach(c=>{
+      const el=$("#"+c.id);
+      if(c.ok){el.classList.add("ok-field");el.disabled=true}
+      else if(!firstWrong){firstWrong=c.fb(num(c.id))}
+    });
+    if(firstWrong){ notice(firstWrong+" Isian yang sudah benar dikunci."); st.l3errors++; return; }
+    good("Tepat! Bentuk potongan kertas kado sudah sesuai dengan kaleng Bu Ratna.");
+    unlock(3); st.finished=true;
+    setTimeout(()=>{
+      $("#level3").classList.add("hidden"); $("#results").classList.remove("hidden");
+      $("#result-title").textContent=`Misi selesai, ${st.team}!`;
+      renderStages(); window.scrollTo({top:0,behavior:"smooth"});
+    },1000);
+  });
+
+  /* ---------- bantuan bertahap (petunjuk, bukan jawaban) ---------- */
+  const helps = [
+    [ "Lihat posisi penanda: mana yang bidang datar, mana yang bagian lengkung, mana garis tegak?",
+      "Dua alas tabung bentuknya sama; bagian lengkungnya punya nama sendiri.",
+      "Tinggi diukur dari alas bawah ke alas atas, bukan mengelilingi kaleng." ],
+    [ "Bayangkan membuka kaleng bekas: bagian mana yang tetap datar, bagian mana yang dibentangkan?",
+      "Dua potongan harus sama besar karena menjadi alas dan tutup.",
+      "Bagian yang dibentangkan ada di tengah; kedua alas menempel pada sisi yang berhadapan." ],
+    [ "Bayangkan selimut dibentangkan. Ukuran apa pada kaleng yang menjadi sisi-sisi persegi panjang?",
+      "Sisi yang tadinya melingkari kaleng sama dengan apa pada lingkaran alas?",
+      "Sisi yang tegak lurus sama dengan ukuran apa yang diukur dari alas bawah ke alas atas?" ]
+  ];
+  $("#help").addEventListener("click",()=>{
+    const i=st.view, n=Math.min(st.helpCount[i],2);
+    notice("Petunjuk "+(n+1)+": "+helps[i][n]);
+    st.helpCount[i]++;
+  });
+  $("#back").addEventListener("click",()=>{ if(st.view>0) showLevel(st.view-1); });
+  $$(".stage").forEach(el=>el.addEventListener("click",()=>{ const i=Number(el.dataset.stage); if(i<=st.unlocked&&!st.finished) showLevel(i); }));
+
+  /* ---------- awal & ulang ---------- */
+  function resetGame(){
+    st={team:st?.team||"",view:0,unlocked:0,matched:0,blankDone:{},slots:{left:null,center:null,right:null},netErrors:0,l3errors:0,guess:null,finished:false,helpCount:[0,0,0]};
+    $$(".marker").forEach(m=>{m.classList.remove("done","pop");m.textContent=m.dataset.target;m.setAttribute("aria-label","Penanda "+m.dataset.target)});
+    $$("#label-bank .piece").forEach(p=>{p.disabled=false;p.classList.remove("used","selected")});
+    $("#l1-blanks").classList.add("hidden"); $("#blank-form").reset();
+    $$("#blank-form select").forEach(s=>{s.disabled=false;s.classList.remove("ok-field")});
+    $("#l2-predict").classList.remove("hidden"); $("#l2-build").classList.add("hidden"); $("#l2-done").classList.add("hidden");
+    $$("#predict-choices .choice").forEach(b=>{b.disabled=false;b.style.borderColor=""});
+    $("#unfold-demo").classList.remove("unfold"); $("#fold-demo").classList.remove("refold");
+    $$(".drop").forEach(s=>{s.innerHTML=s.dataset.original||s.textContent;s.classList.remove("filled")});
+    $$("#shape-bank .piece").forEach(p=>{p.disabled=false;p.classList.remove("used","selected")});
+    $("#final-form").reset(); $$("#final-form input,#final-form select").forEach(x=>{x.disabled=false;x.classList.remove("ok-field")});
+    showLevel(0);
+  }
+  $("#start-form").addEventListener("submit",e=>{
+    e.preventDefault();
+    const name=$("#team-name").value.trim();
+    if(!name){$("#team-name").focus();$("#team-name").placeholder="Tuliskan nama kelompok dahulu";return}
+    st={team:name};
+    $("#team-badge").textContent="👥 "+name;
+    $("#start").classList.add("hidden"); $("#game").classList.remove("hidden");
+    resetGame();
+  });
+  $("#restart").addEventListener("click",resetGame);
+})();
+</script>
+</body>
+</html>
